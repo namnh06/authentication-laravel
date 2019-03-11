@@ -55,9 +55,9 @@ class RegisterController extends Controller
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+
         $user = User::create($input);
-        dd($user);
-        $success['token'] = $user->createToken('ExchangeBook')->accessToken;
+        $success['token'] = $user->createToken('Authentication')->accessToken;
         $success['name'] = $user->name;
 
         return response_success($success, 'User register successfully', 201);
